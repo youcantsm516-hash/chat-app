@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <h2>Welcome to the ChatApp 💬</h2>
+    <p>Enjoy the luxury of messaging anyone around the world</p>
+    {% if user.is_authenticated %}
+    {% else %}
+    <a href="{% url 'users:register' %}">Create account</a>
+    <a href="{% url 'users:login' %}">Login</a>
+    {% endif %}
+{% endblock %}

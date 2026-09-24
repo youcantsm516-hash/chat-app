@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        ChatApp
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <a href="/">
+            <h1>ChatApp 💬</h1>
+        </a>
+        <nav>
+            <a href="/intro" title="Intro">Intro</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'chats:list' %}">Chats</a>
+            <a href="{% url 'chats:new' %}">New Chat</a>
+            <form class="logout" action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button class="logout-button" aria-label="User Logout" title="User Logout">👋</button>
+            </form>
+            {% else %}
+            <a href="{% url 'users:login' %}">Login</a>
+            <a href="{% url 'users:register' %}">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>Copyright &copy; 2026 ChatApp</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Chat List
+{% endblock %}
+
+{% block content %}
+    <h2>Messages</h2>
+    <section>
+        {% for chat in chats %}
+            <a href="{% url 'chats:chat' uuid=chat.id %}">
+                <div class="chat-list">
+                    <h3>{{ chat.userTo }}</h3>
+                    <p>{{ chat.latest_message_body }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </section>
+{% endblock %}
